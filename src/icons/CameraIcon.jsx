@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const MenuIcon = (props) => (
+const CameraIcon = (props) => (
   <Svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const MenuIcon = (props) => (
   </Svg>
 );
 
-export default MenuIcon;
+export default CameraIcon;
