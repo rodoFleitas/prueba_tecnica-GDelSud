@@ -10,7 +10,6 @@ const Inputs = ({
   setFieldTouched,
   touched,
   image,
-  setImage,
   uploadImage,
   removeImage,
   modalVisible,
@@ -25,7 +24,6 @@ const Inputs = ({
       <View style={styles.inputContainer}>
         <ImagePickerComponent
           image={image}
-          setImage={setImage}
           uploadImage={uploadImage}
           removeImage={removeImage}
           modalVisible={modalVisible}

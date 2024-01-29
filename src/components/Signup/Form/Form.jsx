@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { StyleSheet, View, TextInput, Text } from "react-native";
+import { StyleSheet, View, TextInput, Text, Alert } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import * as ImagePicker from "expo-image-picker";
@@ -118,7 +118,6 @@ const Form = () => {
               setFieldTouched={setFieldTouched}
               touched={touched}
               image={image}
-              setImage={setImage}
               uploadImage={uploadImage}
               removeImage={removeImage}
               modalVisible={modalVisible}
