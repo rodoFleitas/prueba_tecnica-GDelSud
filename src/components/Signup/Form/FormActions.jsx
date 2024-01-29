@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const FormActions = ({ handleSubmit, values, isValid }) => {
-  console.log(values.email === "");
   return (
     <Fragment>
       <View style={{ marginTop: 14, marginBottom: 29 }}>
