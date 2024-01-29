@@ -1,5 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { StyleSheet, View, TextInput, Text, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Text,
+  Alert,
+  Platform,
+} from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import * as ImagePicker from "expo-image-picker";
@@ -33,11 +40,24 @@ const Form = () => {
       .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Email invalido")
       .required("Ingresa tu email"),
     password: Yup.string()
-      .min(8, "Minimo 8 caracteres, al menos un numero y una mayuscula")
+      .min(
+        8,
+        "Mínimo 8 caracteres, al menos un símbolo, un número y una mayúscula"
+      )
       .required("Ingresa una contraseña")
-      .matches(/^(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos un numero")
-      .matches(/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una mayuscula")
-      .matches(/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una minuscula"),
+      .matches(/^(?=.*\d)[a-zA-Z\d$@$!%*?&].{1,}$/, "Al menos un número")
+      .matches(
+        /^(?=.*[A-Z])(?=.*)[a-zA-Z\d$@$!%*?&].{1,}$/,
+        "Al menos una mayúscula"
+      )
+      .matches(
+        /^(?=.*[a-z])(?=.*)[a-zA-Z\d$@$!%*?&].{1,}$/,
+        "Al menos una minúscula"
+      )
+      .matches(
+        /^(?=.*[$@$!%*?&])([a-zA-Z\d$@$!%*?&]).{1,}$/,
+        "Al menos un símbolo"
+      ),
   });
 
   const uploadImage = async (mode) => {
@@ -95,10 +115,20 @@ const Form = () => {
     }
   };
 
+  const submit = (values, resetForm) => {
+    if (Platform.OS === "web") {
+      alert(JSON.stringify(values));
+    } else {
+      Alert.alert("Tus datos", JSON.stringify(values), [
+        { text: "Finalizar", onPress: () => resetForm() },
+      ]);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Formik
-        onSubmit={() => console.log("submit")}
+        onSubmit={(values, { resetForm }) => submit(values, resetForm)}
         initialValues={initialValues}
         validationSchema={SignupSchema}
       >
