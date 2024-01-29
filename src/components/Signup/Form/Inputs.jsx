@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
-import { StyleSheet, TextInput, Text, View } from "react-native";
+import React, { Fragment, useState } from "react";
+import { StyleSheet, TextInput, Text, View, Pressable } from "react-native";
 
 import ImagePickerComponent from "./ImagePickerComponent";
+import EyeIcon from "../../../icons/eyeIcon";
+import EyeCloseIcon from "../../../icons/EyeClosedIcon";
 
 const Inputs = ({
   values,
@@ -15,6 +17,7 @@ const Inputs = ({
   modalVisible,
   setModalVisible,
 }) => {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   const errorHandling = (value) => {
     return values[value] !== "" && touched[value] && errors[value];
   };
@@ -85,21 +88,39 @@ const Inputs = ({
           <Text style={styles.errorTxt}>{errors.email}</Text>
         )}
       </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={{
-            ...styles.input,
-            ...(errorHandling("password")
-              ? { borderColor: "#F1110D", color: "#F1110D" }
-              : null),
-          }}
-          onChangeText={handleChange("password")}
-          value={values.password}
-          placeholder="Ingresá tu contraseña"
-          onFocus={() => setFieldTouched("password")}
-          secureTextEntry={true}
-          autoCapitalize="none"
-        />
+      <View style={[styles.inputContainer, { marginTop: 24 }]}>
+        <View style={{ justifyContent: "center" }}>
+          <TextInput
+            style={{
+              ...styles.input,
+              ...{ marginTop: 0 },
+              ...(errorHandling("password")
+                ? { borderColor: "#F1110D", color: "#F1110D" }
+                : null),
+            }}
+            onChangeText={handleChange("password")}
+            value={values.password}
+            placeholder="Ingresá tu contraseña"
+            onFocus={() => setFieldTouched("password")}
+            secureTextEntry={secureTextEntry}
+            autoCapitalize="none"
+          />
+          <Pressable
+            onPress={(e) => setSecureTextEntry(!secureTextEntry)}
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#EDEDED" : "transparent",
+              },
+              styles.securePswBtn,
+            ]}
+          >
+            {secureTextEntry ? (
+              <EyeIcon color="#9EA3AE" />
+            ) : (
+              <EyeCloseIcon color="#9EA3AE" />
+            )}
+          </Pressable>
+        </View>
         {errorHandling("password") && (
           <Text style={styles.errorTxt}>{errors.password}</Text>
         )}
@@ -129,6 +150,15 @@ const styles = StyleSheet.create({
     color: "#000929",
     fontFamily: "PlusJakartaSans_500Medium",
     opacity: 0.5,
+  },
+  securePswBtn: {
+    position: "absolute",
+    alignSelf: "center",
+    right: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 6,
+    borderRadius: 100,
   },
   errorTxt: {
     color: "#F1110D",

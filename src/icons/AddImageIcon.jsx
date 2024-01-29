@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
 
-const MenuIcon = (props) => (
+const AddImageIcon = (props) => (
   <Svg
     width="47"
     height="47"
@@ -61,4 +61,4 @@ const MenuIcon = (props) => (
   </Svg>
 );
 
-export default MenuIcon;
+export default AddImageIcon;
