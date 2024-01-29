@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Button, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const FormActions = ({ handleSubmit, values, isValid }) => {
   return (
@@ -42,16 +42,14 @@ const FormActions = ({ handleSubmit, values, isValid }) => {
           ]}
           onPress={handleSubmit}
         >
-          {({ pressed }) => (
-            <Text
-              style={{
-                ...styles.btnText,
-                color: !isValid ? "rgba(255, 255, 255, 0.5)" : "#FFFFFF",
-              }}
-            >
-              Registrate
-            </Text>
-          )}
+          <Text
+            style={{
+              ...styles.btnText,
+              color: !isValid ? "rgba(255, 255, 255, 0.5)" : "#FFFFFF",
+            }}
+          >
+            Registrate
+          </Text>
         </Pressable>
       </View>
 

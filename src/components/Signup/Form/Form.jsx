@@ -1,12 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { StyleSheet, View, TextInput, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import * as ImagePicker from "expo-image-picker";
 
 import Inputs from "./Inputs";
 import FormActions from "./FormActions";
 
 const Form = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [image, setImage] = useState(null);
+
   const initialValues = {
     name: "",
     phone: "",
@@ -35,6 +39,61 @@ const Form = () => {
       .matches(/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una mayuscula"),
   });
 
+  const uploadImage = async (mode) => {
+    let result = {};
+    try {
+      if (mode === "gallery") {
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+        result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+      } else {
+        await ImagePicker.requestCameraPermissionsAsync();
+        result = await ImagePicker.launchCameraAsync({
+          cameraType: ImagePicker.CameraType.front,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+      }
+
+      if (!result.canceled) {
+        await saveImage(result.assets[0].uri);
+      }
+    } catch (error) {
+      Alert.alert(
+        "Problemas al subir tu foto",
+        "No hemos podido subir tu foto, intenta en otro momento.",
+        [{ text: "Finalizar", onPress: () => setModalVisible(false) }]
+      );
+    }
+  };
+
+  const saveImage = async (image) => {
+    try {
+      setImage(image);
+      setModalVisible(false);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const removeImage = async () => {
+    try {
+      setImage(null);
+      setModalVisible(false);
+    } catch (error) {
+      Alert.alert(
+        "Problemas al eliminar tu foto",
+        "No hemos podido eliminar tu foto.",
+        [{ text: "Finalizar", onPress: () => setModalVisible(false) }]
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Formik
@@ -58,6 +117,12 @@ const Form = () => {
               errors={errors}
               setFieldTouched={setFieldTouched}
               touched={touched}
+              image={image}
+              setImage={setImage}
+              uploadImage={uploadImage}
+              removeImage={removeImage}
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
             />
             <FormActions
               handleSubmit={handleSubmit}

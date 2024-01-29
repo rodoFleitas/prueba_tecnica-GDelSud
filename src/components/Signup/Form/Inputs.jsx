@@ -1,7 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { StyleSheet, TextInput, Text, View } from "react-native";
 
-const Inputs = ({ values, handleChange, errors, setFieldTouched, touched }) => {
+import ImagePickerComponent from "./ImagePickerComponent";
+
+const Inputs = ({
+  values,
+  handleChange,
+  errors,
+  setFieldTouched,
+  touched,
+  image,
+  setImage,
+  uploadImage,
+  removeImage,
+  modalVisible,
+  setModalVisible,
+}) => {
   const errorHandling = (value) => {
     return values[value] !== "" && touched[value] && errors[value];
   };
@@ -9,22 +23,14 @@ const Inputs = ({ values, handleChange, errors, setFieldTouched, touched }) => {
   return (
     <Fragment>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={{
-            ...styles.input,
-            ...(errorHandling("name")
-              ? { borderColor: "#F1110D", color: "#F1110D" }
-              : null),
-          }}
-          onChangeText={handleChange("name")}
-          onChange={handleChange("name")}
-          value={values.name}
-          placeholder="Nombre y Apellido"
-          onFocus={() => setFieldTouched("name")}
+        <ImagePickerComponent
+          image={image}
+          setImage={setImage}
+          uploadImage={uploadImage}
+          removeImage={removeImage}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
         />
-        {errorHandling("name") && (
-          <Text style={styles.errorTxt}>{errors.name}</Text>
-        )}
       </View>
       <View style={styles.inputContainer}>
         <TextInput
