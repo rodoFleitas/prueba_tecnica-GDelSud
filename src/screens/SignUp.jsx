@@ -23,10 +23,16 @@ const SignUp = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexGrow: 1, flexBasis: 0 }}>
+      <View
+        style={{
+          flexGrow: Platform.OS !== "web" || width < 960 ? 1 : 0.7,
+          flexBasis: 0,
+        }}
+      >
         <Navbar width={width} />
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={style.keyboardAV}
         >
           <Pressable
             disabled={Platform.OS === "web"}
@@ -41,7 +47,7 @@ const SignUp = () => {
         </KeyboardAvoidingView>
       </View>
 
-      {Platform.OS === "web" && width > 800 && (
+      {Platform.OS === "web" && width > 960 && (
         <ImageBackground
           style={styles.imgContainer}
           source={require("../../public/formBackground.jpg")}
@@ -58,6 +64,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     height: "100%",
+  },
+  keyboardAV: {
+    display: "flex",
+    justifyContent: "center",
+    flexGrow: 1,
+    flexBasis: 0,
   },
   imgContainer: {
     width: "100%",

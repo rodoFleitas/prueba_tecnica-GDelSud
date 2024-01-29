@@ -10,7 +10,7 @@ const Header = () => {
         <Text
           style={{
             ...styles.title,
-            textAlign: width > 800 ? "left" : "center",
+            textAlign: width > 960 ? "left" : "center",
           }}
         >
           ¡Bienvenido!
@@ -18,7 +18,7 @@ const Header = () => {
         <Text
           style={{
             ...styles.subtitle,
-            textAlign: width > 800 ? "left" : "center",
+            textAlign: width > 960 ? "left" : "center",
           }}
         >
           Convertite ahora en un agente Flexy.
@@ -30,7 +30,6 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 62,
     marginBottom: 31,
     marginHorizontal: 24,
     alignItems: "center",
