@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { StyleSheet, TextInput, Text, View, Pressable } from "react-native";
 
 import ImagePickerComponent from "./ImagePickerComponent";
-import EyeIcon from "../../../icons/eyeIcon";
+import EyeIcon from "../../../icons/EyeIcon";
 import EyeCloseIcon from "../../../icons/EyeClosedIcon";
 
 const Inputs = ({
