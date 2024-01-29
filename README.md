@@ -6,14 +6,14 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 
 | Comando                   | Accion                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installa las dependencias                        |
+| `npm install`             | Instala las dependencias                         |
 | `npm start`               | Inicia Metro Bundler Expo                        |
 
 
 | Comandos Expo (terminal)  | Accion                                           |
 | :------------------------ | :----------------------------------------------- |
 | `s`                       | Switch to development build                      |
-| `a`                       | Inicia Emulador Android                          |
+| `a`                       | Inicia emulador Android                          |
 | `w`                       | Se abre app en la web                            |
 | `r`                       | Recarga el proyecto                              |
 
