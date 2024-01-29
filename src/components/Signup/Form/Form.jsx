@@ -36,7 +36,8 @@ const Form = () => {
       .min(8, "Minimo 8 caracteres, al menos un numero y una mayuscula")
       .required("Ingresa una contraseña")
       .matches(/^(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos un numero")
-      .matches(/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una mayuscula"),
+      .matches(/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una mayuscula")
+      .matches(/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{1,}$/, "Al menos una minuscula"),
   });
 
   const uploadImage = async (mode) => {
