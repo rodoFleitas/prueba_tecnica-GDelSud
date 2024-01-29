@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const FormActions = ({ handleSubmit, values, isValid }) => {
+  console.log(values.email === "");
   return (
     <Fragment>
       <View style={{ marginTop: 14, marginBottom: 29 }}>
@@ -32,11 +33,12 @@ const FormActions = ({ handleSubmit, values, isValid }) => {
           disabled={!isValid || values.email === ""}
           style={({ pressed }) => [
             {
-              backgroundColor: !isValid
-                ? "rgba(112, 101, 240, 0.7)"
-                : pressed
-                ? "rgba(112, 101, 240, 0.9)"
-                : "#7065F0",
+              backgroundColor:
+                !isValid || values.email === ""
+                  ? "rgba(112, 101, 240, 0.7)"
+                  : pressed
+                  ? "rgba(112, 101, 240, 0.9)"
+                  : "#7065F0",
             },
             styles.btn,
           ]}
@@ -45,7 +47,10 @@ const FormActions = ({ handleSubmit, values, isValid }) => {
           <Text
             style={{
               ...styles.btnText,
-              color: !isValid ? "rgba(255, 255, 255, 0.5)" : "#FFFFFF",
+              color:
+                !isValid || values.email === ""
+                  ? "rgba(255, 255, 255, 0.5)"
+                  : "#FFFFFF",
             }}
           >
             Registrate
