@@ -32,7 +32,7 @@ const SignUp = () => {
         <Navbar width={width} />
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={style.keyboardAV}
+          style={styles.keyboardAV}
         >
           <Pressable
             disabled={Platform.OS === "web"}
