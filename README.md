@@ -14,7 +14,7 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 | :------------------------ | :----------------------------------------------- |
 | `s`                       | Switch to development build                      |
 | `a`                       | Inicia emulador Android                          |
-| `w`                       | Se abre app en la web                            |
+| `w`                       | Se abre app en la web `http://localhost:8081/`   |
 | `r`                       | Recarga el proyecto                              |
 
 
