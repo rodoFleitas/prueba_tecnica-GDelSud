@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
 import CameraIcon from "../../../icons/CameraIcon";
-import GaleryIcon from "../../../icons/GaleryIcon";
+import GaleryIcon from "../../../icons/GalleryIcon";
 import DeleteIcon from "../../../icons/DeleteIcon";
 
 const ModalComponent = ({
